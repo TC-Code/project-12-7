@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700&subset=latin-ext");
 * { font-family: "Roboto", sans-serif; margin: 0; padding: 0; box-sizing: border-box; border: 0; outline: 0; }
 
-#board { height: 100vh; background-image: url("../images/board.jpg"); background-size: cover; background-repeat: no-repeat; }
+body { height: 100vh; background-image: url("../images/board.jpg"); background-size: cover; background-repeat: repeat-y; }
 
 #board .header { display: -ms-flexbox; display: flex; -ms-flex-pack: distribute; justify-content: space-around; -ms-flex-align: center; align-items: center; background-color: #2e4238; padding: 25px 0; box-shadow: 0 5px 10px #679aa7; }
 
@@ -15,21 +15,24 @@
 
 #board .column-container .column { background-color: #73c7d6; color: #2e4238; border-radius: 5px; -ms-flex-item-align: start; align-self: flex-start; width: 30%; margin-bottom: 20px; position: relative; }
 
-#board .column-container .column .column-title { background-color: #ffffff; border-radius: 5px 5px 0 0; height: 40px; line-height: 2.5rem; padding-left: 40px; }
+#board .column-container .column .column-title { background-color: #2e4238; border-radius: 5px 5px 0 0; line-height: 2.5rem; padding: 0 60px; min-height: 40px; }
+
+#board .column-container .column .btn-edit-column-name { position: absolute; top: 2px; left: 5px; }
+
+#board .column-container .column .btn-edit-column-name .far { display: block; font-size: 2rem; background-color: #2e4238; color: #73c7d6; cursor: pointer; }
 
 #board .column-container .column .column-card-list { list-style: none; min-height: 150px; background-color: #ffffff; border-radius: 0 0 5px 5px; padding-bottom: 50px; overflow: hidden; }
 
-#board .column-container .column .column-card-list .card { display: -ms-flexbox; display: flex; padding: 10px 0 10px 10px; }
+#board .column-container .column .column-card-list .card { display: -ms-flexbox; display: flex; padding: 10px; }
 
-#board .column-container .column .column-card-list .card .card-description { padding-left: 10px; }
+#board .column-container .column .column-card-list .card .card-description { color: #2e4238; padding: 0 10px; }
 
-#board .column-container .column .column-card-list .btn-delete { font-weight: 700; color: #73c7d6; font-size: 1rem; cursor: pointer; background-color: transparent; }
+#board .column-container .column .column-card-list .btn-edit-card { font-size: 0.8rem; color: #2e4238; cursor: pointer; }
+
+#board .column-container .column .column-card-list .btn-delete { position: absolute; right: 10px; font-weight: 700; color: #73c7d6; font-size: 1rem; cursor: pointer; background-color: transparent; }
 
 #board .column-container .column .column-title { color: #73c7d6; background-color: #2e4238; }
 
 #board .column-container .column .btn-delete-column { color: #73c7d6; background-color: transparent; font-weight: 700; font-size: 1.5rem; position: absolute; right: 10px; top: 5px; width: 25px; height: 25px; cursor: pointer; }
 
-
-#board .column-container .column .add-card { position: absolute; bottom: 0; width: 100%; border-radius: 0 0 5px 5px; height: 40px; font-size: 1rem; font-weight: 700; background-color: #73c7d6; color: #2e4238; cursor: pointer; }
-
-/*# sourceMappingURL=style.css.map */
+#board .column-container .column .add-card { position: absolute; bottom: 0; left: 0; width: 100%; border-radius: 0 0 5px 5px; height: 40px; font-size: 1rem; font-weight: 700; background-color: #73c7d6; color: #2e4238; cursor: pointer; }

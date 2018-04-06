@@ -9,11 +9,14 @@
   outline: 0;
 }
 
-#board {
+body {
   height: 100vh;
   background-image: url("../images/board.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
+}
+
+#board {
   .header {
     display: flex;
     justify-content: space-around;
@@ -52,12 +55,25 @@
       width: 30%;
       margin-bottom: 20px;
       position: relative;
+
       .column-title {
-        background-color: #ffffff;
+        background-color: #2e4238;
         border-radius: 5px 5px 0 0;
-        height: 40px;
         line-height: 2.5rem;
-        padding-left: 40px;
+        padding: 0 60px;
+        min-height: 40px;
+      }
+      .btn-edit-column-name {
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        .far {
+          display: block;
+          font-size: 2rem;
+          background-color: #2e4238;
+          color: #73c7d6;
+          cursor: pointer;
+        }
       }
       .column-card-list {
         list-style: none;
@@ -68,12 +84,20 @@
         overflow: hidden;
         .card {
           display: flex;
-          padding: 10px 0 10px 10px;
+          padding: 10px;
           .card-description {
-            padding-left: 10px;
+            color: #2e4238;
+            padding: 0 10px;
           }
         }
+        .btn-edit-card {
+          font-size: 0.8rem;
+          color: #2e4238;
+          cursor: pointer;
+        }
         .btn-delete {
+          position: absolute;
+          right: 10px;
           font-weight: 700;
           color: #73c7d6;
           font-size: 1rem;
@@ -100,6 +124,7 @@
       .add-card {
         position: absolute;
         bottom: 0;
+        left: 0;
         width: 100%;
         border-radius: 0 0 5px 5px;
         height: 40px;

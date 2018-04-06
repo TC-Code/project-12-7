@@ -9,10 +9,6 @@ var board = {
 
 $(".create-column").on("click", function() {
   var name = prompt("Enter a column name");
-  if (name === "" || name === null) {
-    alert("Please, enter a column name");
-    return;
-  } else {
 
   $.ajax({
     url: baseUrl + "/column",
@@ -25,13 +21,28 @@ $(".create-column").on("click", function() {
       board.addColumn(column);
     }
   });
-}
 });
+
 function initSortable() {
   $(".column-card-list")
     .sortable({
       connectWith: ".column-card-list",
-      placeholder: "card-placeholder"
+      placeholder: "card-placeholder",
+      receive: function(event, ui) {
+        var columnId = ui.item.parents(".column").attr("column-id");
+        var cardId = ui.item.attr("card-id");
+        var cardName = ui.item.children(".card-description").text();
+
+        $.ajax({
+          url: baseUrl + "/card/" + cardId,
+          method: "PUT",
+          data: {
+            id: cardId,
+            name: cardName,
+            bootcamp_kanban_column_id: columnId
+          }
+        });
+      }
     })
     .disableSelection();
 }

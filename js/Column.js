@@ -2,11 +2,16 @@ function Column(id, name) {
   var self = this;
 
   this.id = id;
-  this.name = name;
+  this.name = name || "No name given";
   this.$element = createColumn();
 
   function createColumn() {
-    var $column = $("<div>").addClass("column");
+    var $column = $("<div>")
+      .addClass("column")
+      .attr("column-id", self.id);
+    var $columnEdit = $("<button>")
+      .addClass("btn-edit-column-name")
+      .html("<i class='far fa-edit'></i>");
     var $columnTitle = $("<h2>")
       .addClass("column-title")
       .text(self.name);
@@ -21,8 +26,14 @@ function Column(id, name) {
     $columnDelete.on("click", function() {
       self.deleteColumn();
     });
+
+    $columnEdit.on("click", function() {
+      self.editColumn();
+    });
+
     $columnAddCard.on("click", function() {
       var name = prompt("Enter the name of the card");
+      event.preventDefault();
       $.ajax({
         url: baseUrl + "/card",
         method: "POST",
@@ -40,6 +51,7 @@ function Column(id, name) {
     $column
       .append($columnTitle)
       .append($columnDelete)
+      .append($columnEdit)
       .append($columnAddCard)
       .append($columnCardList);
 
@@ -56,8 +68,28 @@ Column.prototype = {
       url: baseUrl + "/column/" + self.id,
       method: "DELETE",
       success: function(response) {
-        self.element.remove();
+        console.log(self);
+        self.$element.remove();
       }
     });
+  },
+
+  editColumn: function() {
+    var self = this;
+    var newName = prompt("Edit column name:");
+    if (newName === null) {
+      newName = "No name given";
+    } else {
+      $.ajax({
+        url: baseUrl + "/column/" + self.id,
+        method: "PUT",
+        data: {
+          name: newName
+        },
+        success: function(response) {
+          self.$element.children(".column-title").text(newName);
+        }
+      });
+    }
   }
 };
