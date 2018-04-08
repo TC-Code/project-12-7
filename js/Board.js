@@ -9,6 +9,7 @@ var board = {
 
 $(".create-column").on("click", function() {
   var name = prompt("Enter a column name");
+  if (!name) return;
 
   $.ajax({
     url: baseUrl + "/column",
